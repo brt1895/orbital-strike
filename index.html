@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orbital Strike | Berat Vardar</title>
+    <meta name="theme-color" content="#09162a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Orbital Strike" />
+    <link rel="icon" type="image/svg+xml" href="./assets/gravity-game-icon.svg" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="stage-frame">
+        <canvas id="gameCanvas" aria-label="Yercekimi oyunu sahnesi"></canvas>
+
+        <div class="hud-card status-card">
+          <p class="eyebrow">Gunes Sistemi Gorevi</p>
+          <h1>Orbital Strike</h1>
+          <div class="status-grid">
+            <div>
+              <span class="label">Seviye</span>
+              <strong id="levelValue">1 / 7</strong>
+            </div>
+            <div>
+              <span class="label">Hedef</span>
+              <strong id="targetValue">Merkur</strong>
+            </div>
+            <div>
+              <span class="label">Gerekli Isabet</span>
+              <strong id="hitsValue">0 / 1</strong>
+            </div>
+            <div>
+              <span class="label">Durum</span>
+              <strong id="stateValue">Hazir</strong>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hud-card control-card">
+          <div class="control-head">
+            <p class="eyebrow">Atis Kontrolu</p>
+            <p class="microcopy">Fare veya dokunus ile yon ver, sonra atesle.</p>
+          </div>
+
+          <label class="slider-wrap" for="powerRange">
+            <span>Firlatma Gucu</span>
+            <strong id="powerValue">62%</strong>
+          </label>
+          <input id="powerRange" type="range" min="25" max="100" value="62" />
+
+          <div class="button-row">
+            <button id="fireButton" class="primary-button" type="button">Atesle</button>
+            <button id="resetButton" class="ghost-button" type="button">Seviyeyi Sifirla</button>
+          </div>
+
+          <ul class="hint-list">
+            <li>Uzun yari saydam rota isaretleri ilk gidis yonunu gosterir.</li>
+            <li>Topun rotasi Gunes ve gezegenlerin cekimiyle kivrilir.</li>
+            <li><code>Space</code> ile atesle, <code>R</code> ile mevcut seviyeyi basa sar.</li>
+          </ul>
+        </aside>
+
+        <div id="messageRibbon" class="message-ribbon" aria-live="polite"></div>
+        <div class="signature">Gelistiren BERAT VARDAR</div>
+
+        <section id="introOverlay" class="overlay intro-overlay">
+          <div class="overlay-card intro-card">
+            <p class="eyebrow">Interaktif 2D Yercekimi Deneyimi</p>
+            <h2>Gezegenleri vurarak sistemi temizle</h2>
+            <p class="intro-copy">
+              Dunya ustundeki firlatma istasyonundan beyaz parlayan gok tasini gonder,
+              cekim alanlarini okuyup hedef gezegene ulas. Her seviyede isabet sayisi artar.
+            </p>
+            <div class="intro-actions">
+              <button id="startButton" class="primary-button" type="button">Oyunu Baslat</button>
+              <p class="microcopy">Sahne acildiginda Gunes sistemi canli olarak donmeye devam eder.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="dialogOverlay" class="overlay dialog-overlay hidden">
+          <div class="overlay-card dialog-card">
+            <p class="eyebrow" id="dialogEyebrow">Seviye Tamam</p>
+            <h2 id="dialogTitle">Yeni gorev hazir</h2>
+            <p id="dialogCopy" class="intro-copy"></p>
+            <button id="dialogButton" class="primary-button" type="button">Devam Et</button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./game.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>

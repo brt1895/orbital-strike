@@ -1,0 +1,20 @@
+{
+  "name": "Orbital Strike",
+  "short_name": "Orbital Strike",
+  "description": "Berat Vardar tarafindan gelistirilen, Gunes sistemi temali yercekimi atis oyunu.",
+  "lang": "tr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#030917",
+  "theme_color": "#09162a",
+  "icons": [
+    {
+      "src": "./assets/gravity-game-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
